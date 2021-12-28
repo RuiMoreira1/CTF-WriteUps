@@ -39,7 +39,7 @@
 	
 ```
 
-Answer: The upload fails, probably due to the implementation of Content Security Policy (CSP), that block that JS code execution. However, the link can still be copied and opened in a new window, leading to JS code execution. But the links generated utilise Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session.
+Answer: The upload fails, probably due to the implementation of a Web Application firewall (WAF) since the upload fails, that block JS code execution. However, the link can still be copied and opened in a new window, leading to JS code execution. But the links generated utilise Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session. To conclude this does not pose a security risk, since the preview link to the SVG, leading to JS being executed, is only reachable locally, in the current browser session, not leading to any damages in the host server.
 
 **Links:** 
 * https://stackoverflow.com/questions/30864573/what-is-a-blob-url-and-why-it-is-used
