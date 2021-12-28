@@ -39,7 +39,8 @@
 	
 ```
 
-Answer: The upload fails, probably due to the implementation of a Web Application firewall (WAF) since the upload fails, that block JS code execution. However, the link can still be copied and opened in a new window, leading to JS code execution. But the links generated utilise Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session. To conclude this does not pose a security risk, since the preview link to the SVG, leading to JS being executed, is only reachable locally, in the current browser session, not leading to any damages in the host server.
+Answer: The upload fails, probably due to the implementation of a Web Application firewall (WAF), that block JS code execution. However, the link can still be copied and opened in a new window, leading to JS code execution. But the links generated utilise Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session. 
+	To conclude this does not pose a security risk, since the preview link to the SVG, leading to JS being executed, is only reachable locally, in the current browser session, not leading to any damages in the host server.
 
 **Links:** 
 * https://stackoverflow.com/questions/30864573/what-is-a-blob-url-and-why-it-is-used
@@ -70,6 +71,7 @@ Answer: The upload fails, probably due to the implementation of a Web Applicatio
 	We don’t know yet what is causing this, but we know that this service relies on some legacy C++ code.
 ```
 
-Answer: When sending an image via POST request to the /apply_img_filter API, we are probably verifying the integraty of the image uploaded, to reduce the exposure to cyber attacks through, injection or running arbitrary code by image uploading (XML Injection, SQL injection...). Given that if a query parameter 'size' is increased and the server will return some garbage data after the processes image, and knowing that this services rely on C++ legacy code, we are probably experiencing, more allocated memory than the real size of the image, therefore returning garbage. Given that the *buffer*, has more memory allocated, than necessary, we can probably use that *extra* space, to do binary exploitation.
+Answer: When sending an image via POST request to the /apply_img_filter API, we are probably verifying the integrity of the uploaded image, to reduce the exposure to cyber attacks through, injection or running arbitrary code by image uploading (XML Injection, SQL injection...). Given that if the query parameter 'size' is increased and the server returns some garbage data after the processed image, and knowing that this services rely on C++ legacy code, we are probably experiencing more allocated memory than the real size of the image. Therefore returning garbage, server memory allocated right after the image, that contains information from the server that shouldn't be public, such as user sensitive information, even server private keys. Very similar to the Heartbleed Bug. 
+	This could pose a security issue, and we could exploit it by changing the value of size, up to a limit that doesn't cause any crashes, and uploading images, repeatedly, allowing us to retrieve different fragments of the server's memory each time. In the process, we can gain a wealth of sensitive data.  
 
 
