@@ -39,7 +39,7 @@
 	
 ```
 
-Answer: The upload fails, probably due to the implementation of Content Security Policy (CSP), that block that JS code execution. However, the link can still be copied and opened in a new window, being JS code executed. But the links utilises Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session.
+Answer: The upload fails, probably due to the implementation of Content Security Policy (CSP), that block that JS code execution. However, the link can still be copied and opened in a new window, leading to JS code execution. But the links generated utilise Blob Uri Scheme, meaning that it is executing data that our browser has currently in memory, and does not refer to data existing on the host server. These URLs can only be used locally in the single instance of the browser and in the same session.
 
 **Links:** 
 * https://stackoverflow.com/questions/30864573/what-is-a-blob-url-and-why-it-is-used
@@ -68,7 +68,7 @@ Answer: The upload fails, probably due to the implementation of Content Security
 	Could this be a security issue ? If yes, describe how you would exploit it. If no, justify why not.
 
 	We don’t know yet what is causing this, but we know that this service relies on some legacy C++ code.
-``
+```
 
 
 
