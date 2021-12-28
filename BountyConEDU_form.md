@@ -70,5 +70,6 @@ Answer: The upload fails, probably due to the implementation of Content Security
 	We don’t know yet what is causing this, but we know that this service relies on some legacy C++ code.
 ```
 
+Answer: When sending an image via POST request to the /apply_img_filter API, we are probably verifying the integraty of the image uploaded, to reduce the exposure to cyber attacks through, injection or running arbitrary code by image uploading (XML Injection, SQL injection...). Given that if a query parameter 'size' is increased and the server will return some garbage data after the processes image, and knowing that this services rely on C++ legacy code, we are probably experiencing, more allocated memory than the real size of the image, therefore returning garbage. Given that the *buffer*, has more memory allocated, than necessary, we can probably use that *extra* space, to do binary exploitation.
 
 
