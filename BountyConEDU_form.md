@@ -23,7 +23,7 @@
 - [x] Insecure data storage 
 - [x] ASLR
 - [ ] Fizzing != Fuzzing
-- [x] Out of band read != Out of band data
+- [ ] Out of band read != Out of band data
 - [ ] Kernel Overflow ?! Buffer Overflow ??
 - [ ] Memory spoilage ??
 - [x] Segmentation faul
